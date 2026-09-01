@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>习惯打卡</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#2fbf8f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="习惯打卡">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>习惯打卡</h1>
+      <p class="today-label" id="todayLabel"></p>
+    </header>
+
+    <nav class="tabs" aria-label="页面切换">
+      <button type="button" class="tab active" data-tab="today">今日</button>
+      <button type="button" class="tab" data-tab="stats">统计</button>
+      <button type="button" class="tab" data-tab="settings">设置</button>
+    </nav>
+
+    <main>
+      <section id="view-today" class="view active">
+        <div class="summary-card">
+          <div class="summary-text">
+            <span class="summary-count" id="summaryCount">0 / 0</span>
+            <span class="summary-label">今天完成</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p class="progress-tip" id="progressTip"></p>
+        </div>
+
+        <ul class="habit-list" id="habitList"></ul>
+
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="empty-icon">🌱</div>
+          <p>还没有习惯，先添加一个吧</p>
+        </div>
+
+        <form class="add-form" id="addForm">
+          <input type="text" id="habitInput" placeholder="添加新习惯，如：喝水、运动、读书" maxlength="20" autocomplete="off">
+          <button type="submit">添加</button>
+        </form>
+      </section>
+
+      <section id="view-stats" class="view">
+        <div class="card">
+          <h2>最近 7 天完成数</h2>
+          <div class="chart" id="barChart"></div>
+        </div>
+        <div class="card">
+          <h2>习惯统计</h2>
+          <ul class="stat-list" id="statList"></ul>
+          <p class="empty-tip" id="statsEmpty" hidden>暂无习惯数据</p>
+        </div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <div class="card">
+          <h2>数据备份</h2>
+          <p>数据保存在当前浏览器的本地存储中，清除浏览器数据会丢失。建议定期导出备份。</p>
+          <div class="btn-row">
+            <button type="button" class="btn-primary" id="exportBtn">导出备份</button>
+            <button type="button" class="btn-secondary" id="importBtn">导入备份</button>
+            <input type="file" id="importFile" accept=".json,application/json" hidden>
+          </div>
+          <p class="backup-status" id="backupStatus"></p>
+        </div>
+        <div class="card">
+          <h2>关于</h2>
+          <p>纯本地网页应用：数据只保存在你的浏览器里，不会上传到任何服务器。</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
